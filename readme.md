@@ -1,3 +1,21 @@
+# Debian OS config example
+
+changing ssh port, note it is `sshD_config`, not `ssh_config`
+```
+vi /etc/ssh/sshd_config
+```
+
+check ssh key
+```
+cat ~/.ssh/id_rsa.pub
+```
+
+generating ssh-key
+```
+ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
+cat ~/.ssh/id_rsa.pub
+```
+
 ```bash
 apt update
 apt install wget curl git htop zsh
@@ -18,7 +36,36 @@ cat /etc/os-release
 sudo apt install ca-certificates apt-transport-https 
 wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
 echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
-sudo apt install php7.1-cli php7.1-common php7.1-curl php7.1-mbstring php7.1-mysql php7.1-xml
+apt install php7.1-cli php7.1-common php7.1-curl php7.1-mbstring php7.1-mysql php7.1-xml php7.1-fpm
+
+missing extension when composer install in laravel 5.5 project
+apt install php7.1-bcmath
+
+for laravel 5.5
+```
+apt install php7.1-mysqlnd
+apt install php7.1-opcache
+apt install php7.1-pdo
+apt install php7.1-xml
+apt install php7.1-calendar
+apt install php7.1-ctype
+apt install php7.1-curl
+apt install php7.1-dom
+apt install php7.1-exif
+apt install php7.1-fileinfo
+apt install php7.1-ftp
+apt install php7.1-gettext
+apt install php7.1-iconv
+apt install php7.1-json
+apt install php7.1-mbstring
+apt install php7.1-mysqli
+apt install php7.1-pdo_mysql
+apt install php7.1-tokenizer
+apt install php7.1-wddx
+apt install php7.1-xmlreader
+apt install php7.1-xmlwriter
+apt install php7.1-xsl
+```
 
 
 wget --no-check-certificate -O shadowsocks-libev-debian.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev-debian.sh
@@ -44,6 +91,25 @@ example config
 ```
 
 
+nodejs 11
+# Using Debian, as root
+```
+curl -sL https://deb.nodesource.com/setup_11.x | bash -
+apt-get install -y nodejs
+```
+
+nvm
+
+removed 295 packages in 14.895s
+➜  ~ npm -v
+6.5.0
+➜  ~ node -v
+v11.9.0
 
 
-
+composer install memory error
+```
+/bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
+/sbin/mkswap /var/swap.1
+/sbin/swapon /var/swap.1
+```
