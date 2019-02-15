@@ -1,16 +1,19 @@
 # Debian OS config example
 
-changing ssh port, note it is `sshD_config`, not `ssh_config`
+changing ssh port, note it is `sshd_config`, not `ssh_config`
+
 ```
 vi /etc/ssh/sshd_config
 ```
 
 check ssh key
+
 ```
 cat ~/.ssh/id_rsa.pub
 ```
 
 generating ssh-key
+
 ```
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 cat ~/.ssh/id_rsa.pub
@@ -33,7 +36,7 @@ apt update
 cat /etc/os-release
 
 # https://tecadmin.net/install-php-debian-9-stretch/
-sudo apt install ca-certificates apt-transport-https 
+sudo apt install ca-certificates apt-transport-https
 wget -q https://packages.sury.org/php/apt.gpg -O- | sudo apt-key add -
 echo "deb https://packages.sury.org/php/ stretch main" | sudo tee /etc/apt/sources.list.d/php.list
 apt install php7.1-cli php7.1-common php7.1-curl php7.1-mbstring php7.1-mysql php7.1-xml php7.1-fpm
@@ -43,6 +46,7 @@ apt install php7.1-bcmath
 
 for laravel 5.5
 ```
+
 apt install php7.1-mysqlnd
 apt install php7.1-opcache
 apt install php7.1-pdo
@@ -65,8 +69,57 @@ apt install php7.1-wddx
 apt install php7.1-xmlreader
 apt install php7.1-xmlwriter
 apt install php7.1-xsl
+
 ```
 
+bbr config
+
+https://www.mf8.biz/debian9-bbr/
+
+
+修改系统变量：
+
+```
+
+echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
+echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
+
+```
+
+保存生效
+
+```
+
+sysctl -p
+
+```
+
+执行
+
+```
+
+sysctl net.ipv4.tcp_available_congestion_control
+
+```
+如果结果是这样
+
+```
+
+"rootMF8-BIZ sysctl net.ipv4.tcp_available_congestion_control
+net.ipv4.tcp_available_congestion_control = bbr cubic reno
+
+```
+
+就开启了。
+
+执行  lsmod | grep bbr ，以检测 BBR 是否开启。
+
+
+
+
+
+get shadowsocks
+```
 
 wget --no-check-certificate -O shadowsocks-libev-debian.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev-debian.sh
 chmod +x shadowsocks-libev-debian.sh
@@ -77,25 +130,29 @@ shadowsocks
 cat /etc/shadowsocks-libev/config.json
 example config
 ```
+
 {
-    "server":"0.0.0.0",
-    "server_port":12345,
-    "password":"12345",
-    "timeout":300,
-    "user":"nobody",
-    "method":"aes-256-gcm",
-    "fast_open":false,
-    "nameserver":"8.8.8.8",
-    "mode":"tcp_and_udp"
+"server":"0.0.0.0",
+"server_port":12345,
+"password":"12345",
+"timeout":300,
+"user":"nobody",
+"method":"aes-256-gcm",
+"fast_open":false,
+"nameserver":"8.8.8.8",
+"mode":"tcp_and_udp"
 }
+
 ```
 
 
 nodejs 11
 # Using Debian, as root
 ```
+
 curl -sL https://deb.nodesource.com/setup_11.x | bash -
 apt-get install -y nodejs
+
 ```
 
 nvm
@@ -109,7 +166,11 @@ v11.9.0
 
 composer install memory error
 ```
+
 /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
+
+```
+
 ```
