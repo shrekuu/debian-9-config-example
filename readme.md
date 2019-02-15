@@ -43,8 +43,10 @@ apt install php7.1-cli php7.1-common php7.1-curl php7.1-mbstring php7.1-mysql ph
 
 missing extension when composer install in laravel 5.5 project
 apt install php7.1-bcmath
+```
 
 for laravel 5.5
+
 ```
 
 apt install php7.1-mysqlnd
@@ -76,49 +78,38 @@ bbr config
 
 https://www.mf8.biz/debian9-bbr/
 
-
 修改系统变量：
 
 ```
-
 echo "net.core.default_qdisc=fq" >> /etc/sysctl.conf
 echo "net.ipv4.tcp_congestion_control=bbr" >> /etc/sysctl.conf
-
 ```
 
 保存生效
 
 ```
-
 sysctl -p
-
 ```
 
 执行
 
 ```
-
 sysctl net.ipv4.tcp_available_congestion_control
-
 ```
+
 如果结果是这样
 
 ```
-
 "rootMF8-BIZ sysctl net.ipv4.tcp_available_congestion_control
 net.ipv4.tcp_available_congestion_control = bbr cubic reno
-
 ```
 
 就开启了。
 
-执行  lsmod | grep bbr ，以检测 BBR 是否开启。
-
-
-
-
+执行 lsmod | grep bbr ，以检测 BBR 是否开启。
 
 get shadowsocks
+
 ```
 
 wget --no-check-certificate -O shadowsocks-libev-debian.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev-debian.sh
@@ -129,6 +120,7 @@ chmod +x shadowsocks-libev-debian.sh
 shadowsocks
 cat /etc/shadowsocks-libev/config.json
 example config
+
 ```
 
 {
@@ -145,9 +137,10 @@ example config
 
 ```
 
-
 nodejs 11
+
 # Using Debian, as root
+
 ```
 
 curl -sL https://deb.nodesource.com/setup_11.x | bash -
@@ -158,18 +151,20 @@ apt-get install -y nodejs
 nvm
 
 removed 295 packages in 14.895s
-➜  ~ npm -v
+➜ ~ npm -v
 6.5.0
-➜  ~ node -v
+➜ ~ node -v
 v11.9.0
 
-
 composer install memory error
+
 ```
 
 /bin/dd if=/dev/zero of=/var/swap.1 bs=1M count=1024
 /sbin/mkswap /var/swap.1
 /sbin/swapon /var/swap.1
+
+```
 
 ```
 
