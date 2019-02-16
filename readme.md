@@ -114,6 +114,7 @@ get shadowsocks
 
 wget --no-check-certificate -O shadowsocks-libev-debian.sh https://raw.githubusercontent.com/teddysun/shadowsocks_install/master/shadowsocks-libev-debian.sh
 chmod +x shadowsocks-libev-debian.sh
+./shadowsocks-libev-debian.sh
 
 ```
 
